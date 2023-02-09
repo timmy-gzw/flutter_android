@@ -50,23 +50,23 @@ class _MainScreenState extends State<MainScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.slideshow),
-            title: Text("Demos"),
+            label: "Demos",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            title: Text("Properties"),
+            label: "Properties",
           ),
           BottomNavigationBarItem(
+            label: "Methods",
             icon: Icon(Icons.scatter_plot),
-            title: Text("Methods"),
           ),
           BottomNavigationBarItem(
+            label: "Classes",
             icon: Icon(Icons.category),
-            title: Text("Classes"),
           ),
           BottomNavigationBarItem(
+            label: "Libraries",
             icon: Icon(Icons.local_library),
-            title: Text("Libraries"),
           ),
         ],
       ),
