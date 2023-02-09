@@ -112,17 +112,17 @@ class Location with Parcelable {
     // FIXME: https://github.com/dart-lang/sdk/issues/40982
     this.latitude,
     this.longitude, {
-    this.accuracy,
-    this.altitude,
-    this.bearing,
-    this.bearingAccuracyDegrees,
-    this.elapsedRealtimeNanos,
-    this.extras,
-    this.provider,
-    this.speed,
-    this.speedAccuracyMetersPerSecond,
-    this.time,
-    this.verticalAccuracyMeters,
+    required this.accuracy,
+    required this.altitude,
+    required this.bearing,
+    required this.bearingAccuracyDegrees,
+    required this.elapsedRealtimeNanos,
+    required this.extras,
+    required this.provider,
+    required this.speed,
+    required this.speedAccuracyMetersPerSecond,
+    required this.time,
+    required this.verticalAccuracyMeters,
   });
 
   /// Computes the approximate distance in meters between two locations.

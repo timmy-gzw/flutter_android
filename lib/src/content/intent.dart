@@ -50,20 +50,20 @@ class Intent with Parcelable {
   final String package;
 
   Intent({
-    this.action,
-    this.data,
-    this.categories,
-    this.type,
-    this.component,
-    this.extras,
-    this.flags,
-    this.package,
+    required this.action,
+    required this.data,
+    required this.categories,
+    required this.type,
+    required this.component,
+    required this.extras,
+    required this.flags,
+    required this.package,
   });
 
   /// Gives additional information about the action to execute.
   ///
   /// If this intent has multiple categories, returns the first of them.
-  String get category => categories.isNotEmpty ? categories.first : null;
+  String? get category => categories.isNotEmpty ? categories.first : null;
 
   /// Launches a new activity.
   ///
@@ -72,11 +72,11 @@ class Intent with Parcelable {
     assert(Platform.isAndroid);
     final request = <String, dynamic>{
       'action': action,
-      'data': data?.toString(),
+      'data': data.toString(),
       'categories': categories,
       'type': type,
-      'component': component?.flattenToString(),
-      'extras': extras?.mappings,
+      'component': component.flattenToString(),
+      'extras': extras.mappings,
       'flags': flags,
       'package': package,
     };

@@ -55,19 +55,19 @@ class Face {
   final double poseZ;
 
   Face({
-    this.confidence,
-    this.eyesDistance,
-    this.midPoint,
-    this.poseX,
-    this.poseY,
-    this.poseZ,
+    required this.confidence,
+    required this.eyesDistance,
+    required this.midPoint,
+    required this.poseX,
+    required this.poseY,
+    required this.poseZ,
   });
 
   /// Returns the face's pose. That is, the rotations around either the X, Y or
   /// Z axis (the positions in 3-dimensional Euclidean space).
   ///
   /// See: https://developer.android.com/reference/android/media/FaceDetector.Face#pose(int)
-  double pose(final int euler) {
+  double? pose(final int euler) {
     switch (euler) {
       case EULER_X:
         return poseX;

@@ -64,8 +64,8 @@ class NotificationAction {
   final String title;
 
   NotificationAction({
-    this.intent,
-    this.icon,
-    this.title,
+    required this.intent,
+    required this.icon,
+    required this.title,
   });
 }

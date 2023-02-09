@@ -312,26 +312,26 @@ class Sensor {
   final int key;
 
   /// See: https://developer.android.com/reference/android/hardware/Sensor#getName()
-  final String name;
+  final String? name;
 
   /// See: https://developer.android.com/reference/android/hardware/Sensor#getType()
   final int type;
 
   const Sensor({
-    @required this.key,
-    this.name,
-    this.type,
+    required this.key,
+    required this.name,
+    required this.type,
   });
 
   /// Subscribes to this sensor's event stream.
   ///
   /// See: https://developer.android.com/reference/android/hardware/SensorManager#registerListener(android.hardware.SensorEventListener,%20android.hardware.Sensor,%20int)
-  Future<Stream<SensorEvent>> subscribe(
-      {int samplingPeriodUs, int maxReportLatencyUs}) async {
+  Future<Stream<SensorEvent>?> subscribe(
+      {required int samplingPeriodUs, required int maxReportLatencyUs}) async {
     final events = await SensorManager.registerListener(this,
         samplingPeriodUs: samplingPeriodUs,
         maxReportLatencyUs: maxReportLatencyUs);
-    return events.receiveBroadcastStream().map(
+    return events?.receiveBroadcastStream().map(
         (dynamic event) => _streamEventToSensorEvent(event.cast<double>()));
   }
 

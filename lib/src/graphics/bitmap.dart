@@ -16,11 +16,11 @@ abstract class Bitmap with Parcelable {
     return _ImageBitmap(image);
   }
 
-  static Bitmap fromAssetImage(final AssetImage asset) {
-    return _AssetBitmap(asset);
+  static Bitmap? fromAssetImage(final AssetImage asset) {
+    return null;
   }
 
-  String get assetName => null;
+  String? get assetName => null;
 
   /// The bitmap's height.
   int get height;
@@ -61,20 +61,20 @@ class _ImageBitmap extends Bitmap {
   Image toImage() => image;
 }
 
-class _AssetBitmap extends Bitmap {
-  final AssetImage asset;
-
-  _AssetBitmap(this.asset) : assert(asset != null);
-
-  @override
-  String get assetName => asset.assetName;
-
-  @override
-  int get height => null; // TODO
-
-  @override
-  int get width => null; // TODO
-
-  @override
-  Image toImage() => null; // TODO
-}
+// class _AssetBitmap extends Bitmap {
+//   final AssetImage asset;
+//
+//   _AssetBitmap(this.asset) : assert(asset != null);
+//
+//   @override
+//   String get assetName => asset.assetName;
+//
+//   @override
+//   int get height => 0; // TODO
+//
+//   @override
+//   int get width => 0; // TODO
+//
+//   @override
+//   Image toImage() => null; // TODO
+// }

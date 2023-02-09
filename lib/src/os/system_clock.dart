@@ -8,21 +8,21 @@ abstract class SystemClock {
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#currentThreadTimeMillis()
   int get currentThreadTimeMillis {
-    return null; // TODO
+    return -1; // TODO
   }
 
   /// Returns milliseconds since boot, including time spent in sleep.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#elapsedRealtime()
   int get elapsedRealtime {
-    return null; // TODO
+    return -1; // TODO
   }
 
   /// Returns nanoseconds since boot, including time spent in sleep.
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#elapsedRealtimeNanos()
   int get elapsedRealtimeNanos {
-    return null; // TODO
+    return -1; // TODO
   }
 
   /// Sets the current wall time, in milliseconds.
@@ -31,7 +31,6 @@ abstract class SystemClock {
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#setCurrentTimeMillis(long)
   set currentThreadTimeMillis(final int millis) {
-    return null; // TODO
   }
 
   /// Waits a given number of milliseconds (of [uptimeMillis]) before returning.
@@ -45,6 +44,6 @@ abstract class SystemClock {
   ///
   /// See: https://developer.android.com/reference/android/os/SystemClock#uptimeMillis()
   int get uptimeMillis {
-    return null; // TODO
+    return -1; // TODO
   }
 }

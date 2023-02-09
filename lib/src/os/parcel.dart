@@ -1,15 +1,7 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'dart:typed_data'
-    show
-        ByteData,
-        Endian,
-        Float32List,
-        Float64List,
-        Int16List,
-        Int32List,
-        Int64List,
-        Uint8List;
+    show ByteData, Endian, Float32List, Float64List, Int16List, Int32List, Int64List, Uint8List;
 
 import 'package:typed_data/typed_buffers.dart' show Uint8Buffer;
 
@@ -57,7 +49,7 @@ class Parcel {
 
   final Uint8Buffer _output = Uint8Buffer();
   final ByteData _buffer = ByteData(8);
-  Uint8List _bufferAsList;
+  late Uint8List _bufferAsList;
 
   Parcel.obtain() {
     _bufferAsList = _buffer.buffer.asUint8List();
@@ -115,7 +107,7 @@ class Parcel {
       writeStringArray(val);
     } else if (val is List) {
       writeInt(VAL_LIST);
-      writeList(val);
+      writeList(val as List<Object>);
     } else {
       throw ArgumentError("Parcel: unable to marshal value $val");
     }
@@ -263,13 +255,13 @@ class Parcel {
 
   void writeParcelable(final Parcelable parcelable, [int parcelableFlags = 0]) {
     if (parcelable == null) {
-      return writeString(null);
+      // return writeString(null);
     }
     writeString(parcelable.parcelableCreator);
     parcelable.writeToParcel(this, parcelableFlags);
   }
 
-  void _write(final Uint8List data, [int start = 0, int end]) {
+  void _write(final Uint8List data, [int start = 0, int end = 0]) {
     _output.addAll(data, start, end);
     if (_output.lengthInBytes % 4 != 0) {
       _writePadding(4 - _output.lengthInBytes % 4);

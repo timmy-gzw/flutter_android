@@ -70,7 +70,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// delivered.
   ///
   /// This is simply a Dart-idiomatic getter alias for [getNotificationUri()].
-  Uri get notificationUri => getNotificationUri();
+  Uri? get notificationUri => getNotificationUri();
 
   /// The current position of the cursor in the row set.
   ///
@@ -100,8 +100,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// column doesn't exist.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#getColumnIndex(java.lang.String)
-  int getColumnIndex(final String columnName) =>
-      getColumnNames().indexOf(columnName);
+  int getColumnIndex(final String columnName) => getColumnNames().indexOf(columnName);
 
   /// Returns the column name at the given zero-based column index.
   ///
@@ -148,7 +147,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// will be delivered.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#getNotificationUri()
-  Uri getNotificationUri() => null;
+  Uri? getNotificationUri() => null;
 
   /// Returns the current position of the cursor in the row set.
   ///
@@ -173,7 +172,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// Returns data type of the given column's value.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#getType(int)
-  int getType(final int columnIndex) {
+  int? getType(final int columnIndex) {
     final dynamic value = get(columnIndex);
     if (value == null) return FIELD_TYPE_NULL;
     if (value is int) return FIELD_TYPE_INTEGER;
@@ -240,8 +239,7 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
   /// in the result set.
   ///
   /// See: https://developer.android.com/reference/android/database/Cursor#moveToNext()
-  bool moveToNext() =>
-      (getPosition() < getCount()) && move(1) && (getPosition() < getCount());
+  bool moveToNext() => (getPosition() < getCount()) && move(1) && (getPosition() < getCount());
 
   /// Moves the cursor to an absolute position.
   ///
@@ -270,22 +268,20 @@ abstract class Cursor extends Iterable<Map<String, dynamic>> {
 class _CursorIterator extends Iterator<Map<String, dynamic>> {
   final Cursor cursor;
   final List<String> _columnNames;
-  Map<String, dynamic> _currentRow;
+  late Map<String, dynamic> _currentRow;
 
   _CursorIterator(this.cursor) : _columnNames = cursor.getColumnNames();
 
   @override
   bool moveNext() {
     if (!cursor.moveToNext()) {
-      _currentRow = null;
+      _currentRow = {};
       return false;
     }
 
     _currentRow = <String, dynamic>{};
-    for (var columnIndex = 0;
-        columnIndex < _columnNames.length;
-        columnIndex++) {
-      _currentRow[_columnNames[columnIndex]] = cursor.get(columnIndex);
+    for (var columnIndex = 0; columnIndex < _columnNames.length; columnIndex++) {
+      _currentRow![_columnNames[columnIndex]] = cursor.get(columnIndex);
     }
     return true;
   }

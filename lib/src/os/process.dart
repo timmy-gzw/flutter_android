@@ -108,7 +108,7 @@ abstract class Process {
   /// Returns whether the current process is in an isolated sandbox.
   ///
   /// See: https://developer.android.com/reference/android/os/Process#isIsolated()
-  static Future<bool> get isIsolated {
+  static Future<bool>? get isIsolated {
     return null; // TODO
   }
 }

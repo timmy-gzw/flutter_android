@@ -21,8 +21,7 @@ class MatrixCursor extends Cursor {
   MatrixCursor.empty();
 
   /// Constructs a cursor from the provided column/row data.
-  MatrixCursor.from(
-      {@required List<String> columns, @required List<List<dynamic>> rows})
+  MatrixCursor.from({required List<String> columns, required List<List<dynamic>> rows})
       : assert(columns != null),
         assert(rows != null),
         _columns = List.unmodifiable(columns),
@@ -31,8 +30,8 @@ class MatrixCursor extends Cursor {
   @override
   Future<void> close() {
     _isClosed = true;
-    _columns = null;
-    _rows = null;
+    _columns = [];
+    _rows = [];
     _rowIndex = -1;
     return Future.value();
   }
@@ -40,10 +39,11 @@ class MatrixCursor extends Cursor {
   @override
   dynamic get(final int columnIndex) {
     assert(!_isClosed);
-    if (_rowIndex < 0 || _rowIndex >= _rows?.length ?? 0) {
+
+    if (_rowIndex < 0 || _rowIndex >= _rows.length) {
       throw CursorIndexOutOfBoundsException(_rowIndex, _rows.length);
     }
-    if (columnIndex < 0 || columnIndex >= _columns?.length ?? 0) {
+    if (columnIndex < 0 || columnIndex >= _columns.length) {
       throw CursorIndexOutOfBoundsException(columnIndex, _columns.length);
     }
     assert(_rows != null);
@@ -65,7 +65,7 @@ class MatrixCursor extends Cursor {
   @override
   bool moveToPosition(final int position) {
     assert(!_isClosed);
-    if (position >= -1 && position <= _rows?.length ?? 0) {
+    if (position >= -1 && position <= _rows.length) {
       _rowIndex = position;
       return true; // request accepted
     }
@@ -77,7 +77,7 @@ class MatrixCursor extends Cursor {
   /// See: https://developer.android.com/reference/android/database/MatrixCursor#addRow(java.lang.Object[])
   void addRow(final List<dynamic> columnValues) {
     assert(!_isClosed);
-    if (columnValues.length != _columns?.length ?? 0) {
+    if (columnValues.length != _columns.length) {
       throw ArgumentError();
     }
     assert(_rows != null);

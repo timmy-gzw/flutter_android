@@ -90,73 +90,73 @@ class Notification with Parcelable {
 
   /// Constructs a [Notification] object.
   Notification({
-    this.actions,
-    this.category,
-    this.color,
-    this.extras,
-    this.flags,
-    this.iconLevel,
-    this.number,
-    this.publicVersion,
-    this.visibility,
-    this.when,
+    required this.actions,
+    required this.category,
+    required this.color,
+    required this.extras,
+    required this.flags,
+    required this.iconLevel,
+    required this.number,
+    required this.publicVersion,
+    required this.visibility,
+    required this.when,
   });
 
   /// Returns what icon should be shown for this notification if it is being
   /// displayed in a [Launcher] that supports badging.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getBadgeIconType()
-  int getBadgeIconType() => null; // TODO
+  int? getBadgeIconType() => null; // TODO
 
   /// Returns the id of the channel this notification posts to.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getChannelId()
-  String getChannelId() => null; // TODO
+  String? getChannelId() => null; // TODO
 
   /// Get the key used to group this notification into a cluster or stack with
   /// other notifications on devices which support such rendering.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getGroup()
-  String getGroup() => null; // TODO
+  String? getGroup() => null; // TODO
 
   /// Returns which type of notifications in a group are responsible for audibly
   /// alerting the user.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getGroupAlertBehavior()
-  int getGroupAlertBehavior() => null; // TODO
+  int? getGroupAlertBehavior() => null; // TODO
 
   /// The large icon shown in this notification's content view.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getLargeIcon()
-  Icon getLargeIcon() => null; // TODO
+  Icon? getLargeIcon() => null; // TODO
 
   /// Returns the settings text.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getSettingsText()
-  String getSettingsText() => null; // TODO
+  String? getSettingsText() => null; // TODO
 
   /// Returns the id that this notification supersedes, if any.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getShortcutId()
-  String getShortcutId() => null; // TODO
+  String? getShortcutId() => null; // TODO
 
   /// The small icon representing this notification in the status bar and
   /// content view.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getSmallIcon()
-  Icon getSmallIcon() => null; // TODO
+  Icon? getSmallIcon() => null; // TODO
 
   /// Get a sort key that orders this notification among other notifications
   /// from the same package.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getSortKey()
-  String getSortKey() => null; // TODO
+  String? getSortKey() => null; // TODO
 
   /// Returns the duration from posting after which this notification should be
   /// canceled by the system, if it's not canceled already.
   ///
   /// See: https://developer.android.com/reference/android/app/Notification#getTimeoutAfter()
-  int getTimeoutAfter() => null; // TODO
+  int? getTimeoutAfter() => null; // TODO
 
   @override
   String get parcelableCreator => "android.app.Notification";
