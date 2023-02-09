@@ -1,6 +1,8 @@
 /* This is free and unencumbered software released into the public domain. */
 
 import 'dart:async' show Future;
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 /// Tools for managing OS processes.
 ///
@@ -91,11 +93,16 @@ abstract class Process {
   /// See: https://developer.android.com/reference/android/os/Process#SIGNAL_USR1
   static const int SIGNAL_USR1 = 10;
 
+
+  static const MethodChannel _channel = MethodChannel('flutter_android/Process');
+
+
   /// Returns whether the current process is a 64-bit runtime.
   ///
   /// See: https://developer.android.com/reference/android/os/Process#is64Bit()
-  static Future<bool> get is64Bit {
-    return null; // TODO
+  static Future<bool> get is64Bit async {
+    assert(Platform.isAndroid);
+    return await _channel.invokeMethod('is64Bit');
   }
 
   /// Returns whether the current process is in an isolated sandbox.
